@@ -18,6 +18,10 @@ window.addEventListener("DOMContentLoaded", () => {
         out.textContent = 0;
     }
 
+    // deleteBtn.addEventListener("click", () => {
+    //     console.log("asdas");
+    // });
+
     document.querySelector(".reset").addEventListener("click", clearAll); // clear calc-screen when user click on reset
 
     document.querySelector(".buttons").addEventListener("click", (e) => {
@@ -28,6 +32,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
         // when user click on button
         if (e.target.classList.contains("reset")) {
+            return;
+        }
+
+        if (e.target.classList.contains("delete")) {
             return;
         }
 
@@ -93,6 +101,20 @@ window.addEventListener("DOMContentLoaded", () => {
                 } else {
                     out.textContent = firstNumber;
                 }
+            }
+        }
+    });
+
+    document.querySelector(".delete").addEventListener("click", () => {
+        if (sign === "") {
+            if (out.textContent.length > 1) {
+                firstNumber = firstNumber.slice(0, firstNumber.length - 1);
+                out.textContent = firstNumber;
+            }
+        } else {
+            if (out.textContent.length > 1) {
+                secondNumber = secondNumber.slice(0, secondNumber.length - 1);
+                out.textContent = secondNumber;
             }
         }
     });
