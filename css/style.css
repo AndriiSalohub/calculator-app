@@ -102,6 +102,11 @@ body{
         margin-bottom: 10px;
     }
     
+    .calc-screen p{
+        font-size: 30px;
+        padding: 30px;
+    }
+
     .reset{
         width: 100%;
         grid-column: 1/3;
