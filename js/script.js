@@ -1,8 +1,8 @@
 window.addEventListener("DOMContentLoaded", () => {
-    let firstNumber = "";
-    let secondNumber = "";
+    let firstNumber = ""; // first number and result
+    let secondNumber = ""; // second number
     let sign = "";
-    let finish = false;
+    let finish = false; // flag that indicates whether the arithmetic operation has ended
 
     const digit = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
     const action = ["-", "+", "x", "/"];
@@ -17,10 +17,6 @@ window.addEventListener("DOMContentLoaded", () => {
         finish = false;
         out.textContent = 0;
     }
-
-    // deleteBtn.addEventListener("click", () => {
-    //     console.log("asdas");
-    // });
 
     document.querySelector(".reset").addEventListener("click", clearAll); // clear calc-screen when user click on reset
 
@@ -94,6 +90,8 @@ window.addEventListener("DOMContentLoaded", () => {
                 }
                 finish = true;
                 secondNumber = "";
+                sign = "";
+                firstNumber += "";
                 out.textContent = firstNumber;
             } else {
                 if (firstNumber === "") {
@@ -106,15 +104,22 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     document.querySelector(".delete").addEventListener("click", () => {
+        // check what number user want to delete
         if (sign === "") {
-            if (out.textContent.length > 1) {
+            if (firstNumber !== "" && firstNumber.length > 1) {
                 firstNumber = firstNumber.slice(0, firstNumber.length - 1);
                 out.textContent = firstNumber;
+            } else if (firstNumber.length === 1) {
+                firstNumber = "";
+                out.textContent = 0;
             }
         } else {
-            if (out.textContent.length > 1) {
+            if (secondNumber !== "" && secondNumber.length > 1) {
                 secondNumber = secondNumber.slice(0, secondNumber.length - 1);
                 out.textContent = secondNumber;
+            } else if (secondNumber.length === 1) {
+                secondNumber = "";
+                out.textContent = 0;
             }
         }
     });
