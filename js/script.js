@@ -62,30 +62,38 @@ window.addEventListener("DOMContentLoaded", () => {
 
         //clicked on =
         if (key === "=") {
-            switch (sign) {
-                case "+":
-                    firstNumber = +firstNumber + +secondNumber;
-                    break;
-                case "-":
-                    firstNumber = firstNumber - secondNumber;
-                    break;
-                case "x":
-                    firstNumber = firstNumber * secondNumber;
-                    break;
-                case "/":
-                    if (secondNumber === "0") {
-                        out.textContent = "Error";
-                        firstNumber = "";
-                        secondNumber = "";
-                        sign = "";
-                        return;
-                    }
-                    firstNumber = firstNumber / secondNumber;
-                    break;
+            if (sign !== "") {
+                switch (sign) {
+                    case "+":
+                        firstNumber = +firstNumber + +secondNumber;
+                        break;
+                    case "-":
+                        firstNumber = firstNumber - secondNumber;
+                        break;
+                    case "x":
+                        firstNumber = firstNumber * secondNumber;
+                        break;
+                    case "/":
+                        if (secondNumber === "0") {
+                            out.textContent = "Error";
+                            firstNumber = "";
+                            secondNumber = "";
+                            sign = "";
+                            return;
+                        }
+                        firstNumber = firstNumber / secondNumber;
+                        break;
+                }
+                finish = true;
+                secondNumber = "";
+                out.textContent = firstNumber;
+            } else {
+                if (firstNumber === "") {
+                    out.textContent = 0;
+                } else {
+                    out.textContent = firstNumber;
+                }
             }
-            finish = true;
-            secondNumber = "";
-            out.textContent = firstNumber;
         }
     });
 });
