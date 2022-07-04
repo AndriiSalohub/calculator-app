@@ -142,6 +142,47 @@ function calculator() {
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (calculator);
 
 
+/***/ }),
+
+/***/ "./js/modules/theme.js":
+/*!*****************************!*\
+  !*** ./js/modules/theme.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function theme() {
+    const changeThemeButtons = document.querySelectorAll(".changeTheme");
+
+    changeThemeButtons.forEach((button) => {
+        button.addEventListener("click", function (e) {
+            let theme = this.dataset.theme;
+            applyTheme(theme);
+            localStorage.setItem("theme", theme);
+        });
+    });
+
+    function applyTheme(themeName) {
+        document
+            .querySelector('[title="theme"]')
+            .setAttribute("href", `css/theme-${themeName}.css`);
+    }
+
+    let activeTheme = localStorage.getItem("theme");
+
+    if (activeTheme === null) {
+        applyTheme("light");
+    } else {
+        applyTheme(activeTheme);
+    }
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (theme);
+
+
 /***/ })
 
 /******/ 	});
@@ -208,10 +249,13 @@ var __webpack_exports__ = {};
   \*********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_calculator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/calculator */ "./js/modules/calculator.js");
+/* harmony import */ var _modules_theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/theme */ "./js/modules/theme.js");
+
 
 
 window.addEventListener("DOMContentLoaded", () => {
     (0,_modules_calculator__WEBPACK_IMPORTED_MODULE_0__["default"])();
+    (0,_modules_theme__WEBPACK_IMPORTED_MODULE_1__["default"])();
 });
 
 })();
